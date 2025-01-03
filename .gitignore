@@ -3,3 +3,6 @@
 
 # Disable large dataset
 /worker/cic-ids-2017(10).csv
+
+# Disable final model
+/aggregator/aggregated_model.pkl
