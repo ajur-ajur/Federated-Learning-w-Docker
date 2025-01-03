@@ -1,0 +1,5 @@
+# Disable Virtual env
+/venv/
+
+# Disable large dataset
+/worker/cic-ids-2017(10).csv

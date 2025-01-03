@@ -1,0 +1,50 @@
+services:
+  aggregator:
+    build:
+      context: .
+      dockerfile: Dockerfile.aggregator
+    ports:
+      - "5000:5000"
+    volumes:
+      - type: bind
+        source: ./aggregator
+        target: /app/
+
+  worker1:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      - WORKER_ID=worker1
+    depends_on:
+      - aggregator
+    volumes:
+      - type: bind
+        source: ./worker
+        target: /app/
+
+  worker2:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      - WORKER_ID=worker2
+    depends_on:
+      - aggregator
+    volumes:
+      - type: bind
+        source: ./worker
+        target: /app/
+
+  worker3:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      - WORKER_ID=worker3
+    depends_on:
+      - aggregator
+    volumes:
+      - type: bind
+        source: ./worker
+        target: /app/

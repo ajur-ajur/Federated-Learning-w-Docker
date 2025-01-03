@@ -1,0 +1,18 @@
+# Dockerfile for ML Workers
+FROM python:3.11
+
+# Copy requirements.txt
+COPY requirements.txt /app/
+
+# Install dependencies
+RUN pip install -r /app/requirements.txt
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the worker script and dataset into the container
+COPY worker/worker.py /app/
+COPY worker/cic-ids-2017(10).csv /app/
+
+# Run the worker script when the container starts
+CMD ["python", "worker.py"]

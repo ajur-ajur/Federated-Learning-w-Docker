@@ -1,0 +1,17 @@
+# Dockerfile for Aggregator
+FROM python:3.11
+
+# Copy requirements.txt
+COPY requirements.txt /app/
+
+# Install dependencies
+RUN pip install -r /app/requirements.txt
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the aggregator script into the container
+COPY aggregator/aggregator.py /app/
+
+# Run the aggregator script when the container starts
+CMD ["python", "aggregator.py"]
